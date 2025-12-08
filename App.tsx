@@ -406,12 +406,12 @@ const App: React.FC = () => {
                 <iframe
                   src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d31772.448033434655!2d-117.12631118444229!3d47.65143396872218!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x549e185c30bbe7e5%3A0xddfcc9d60b84d9b1!2sSpokane%2C%20WA!5e0!3m2!1sen!2sus!4v1765161972160!5m2!1sen!2sus"
                   width="100%"
-                  height="450"
+                  height="600"
                   style={{ border: 0 }}
                   allowFullScreen={true}
                   loading="lazy"
                   referrerPolicy="no-referrer-when-downgrade"
-                  className="w-full h-full grayscale-[20%] hover:grayscale-0 transition-all duration-700"
+                  className="rounded-xl grayscale hover:grayscale-0 transition-all duration-700"
                 ></iframe>
               </div>
             </div>
