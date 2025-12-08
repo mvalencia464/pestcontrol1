@@ -1,0 +1,7 @@
+{
+  "name": "Freedom Pest Control",
+  "description": "A high-conversion, mobile-first pest control booking platform featuring a frictionless multi-step quote wizard and instant trust signaling.",
+  "requestFramePermissions": [
+    "camera"
+  ]
+}
