@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Star } from 'lucide-react';
+import { Quote } from 'lucide-react';
 
 const HERO_REVIEWS = [
   { text: "Best service in Spokane!", author: "Sarah J." },
@@ -26,17 +26,15 @@ export const HeroReviews: React.FC = () => {
   }, []);
 
   return (
-    <div className="flex items-center gap-3 text-sm font-medium text-slate-600 bg-white/80 backdrop-blur-sm py-2 px-4 rounded-full border border-gray-100 shadow-sm w-fit mx-auto lg:mx-0 mb-8 animate-in fade-in zoom-in duration-700 delay-300">
-      <div className="flex gap-0.5 text-yellow-400 shrink-0">
-        <Star size={14} fill="currentColor" />
-        <Star size={14} fill="currentColor" />
-        <Star size={14} fill="currentColor" />
-        <Star size={14} fill="currentColor" />
-        <Star size={14} fill="currentColor" />
+    <div className="flex items-center gap-4 bg-white shadow-xl shadow-brand-900/5 py-3 px-5 rounded-2xl border-l-4 border-brand-500 w-fit mx-auto lg:mx-0 mb-8 animate-in fade-in slide-in-from-bottom-4 duration-1000 delay-200">
+      <div className="bg-brand-50 p-2 rounded-full shrink-0">
+        <Quote size={18} className="text-brand-600 fill-brand-600" />
       </div>
-      <div className={`transition-opacity duration-500 ${fade ? 'opacity-100' : 'opacity-0'} flex gap-2 whitespace-nowrap overflow-hidden text-ellipsis`}>
-        <span className="text-slate-900 font-semibold">"{HERO_REVIEWS[index].text}"</span>
-        <span className="text-slate-500 hidden sm:inline">- {HERO_REVIEWS[index].author}</span>
+      <div className={`transition-opacity duration-500 ${fade ? 'opacity-100' : 'opacity-0'} flex flex-col`}>
+        <span className="text-slate-900 font-bold text-base leading-tight">"{HERO_REVIEWS[index].text}"</span>
+        <span className="text-slate-500 text-xs font-medium uppercase tracking-wide mt-0.5 border-t border-gray-100 pt-1 w-fit">
+          Verified Customer &bull; {HERO_REVIEWS[index].author}
+        </span>
       </div>
     </div>
   );
