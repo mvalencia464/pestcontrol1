@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { QuoteFormData, PestType, UrgencyLevel, PestIdentificationResult } from '../types';
 import { ArrowRight, Check, MapPin, Home, Building2, Loader2, Sparkles, ScanLine, AlertCircle } from 'lucide-react';
 import { getPestReassuranceTip, identifyPest } from '../services/geminiService';
+import TurnstileWidget from './TurnstileWidget';
 
 // External SVG Icons
 const PEST_ICONS_URLS: Record<string, string> = {
@@ -50,6 +51,8 @@ export const QuoteForm: React.FC = () => {
   });
   const [hasConsented, setHasConsented] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [turnstileToken, setTurnstileToken] = useState<string | null>(null);
+  const [turnstileError, setTurnstileError] = useState('');
 
   // Fetch AI reassurance tip when pest type changes
   useEffect(() => {
@@ -126,6 +129,15 @@ export const QuoteForm: React.FC = () => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (!hasConsented) return;
+
+    if (!turnstileToken) {
+      setTurnstileError('Please complete the security check.');
+      return;
+    }
+
+    // TODO: Send to backend with turnstileToken in payload
+    // const payload = { ...formData, 'cf-turnstile-response': turnstileToken };
+
     // Simulate API call
     setTimeout(() => {
       setIsSubmitted(true);
@@ -440,6 +452,19 @@ export const QuoteForm: React.FC = () => {
                   onChange={(e) => updateField('email', e.target.value)}
                   className="w-full px-3 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-brand-500 outline-none"
                 />
+              </div>
+
+              {/* Cloudflare Turnstile Widget */}
+              <div className="my-4">
+                <TurnstileWidget
+                  siteKey={import.meta.env.VITE_TURNSTILE_SITE_KEY}
+                  onVerify={(token) => {
+                    setTurnstileToken(token);
+                    setTurnstileError('');
+                  }}
+                  onError={(err) => console.error('Turnstile Error:', err)}
+                />
+                {turnstileError && <p className="text-red-500 text-sm mt-2">{turnstileError}</p>}
               </div>
 
               <div className="pt-2">
