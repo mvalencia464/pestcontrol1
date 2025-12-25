@@ -1,0 +1,18 @@
+[build]
+  command = "npm run build"
+  publish = "dist"
+  functions = "netlify/functions"
+
+[build.environment]
+  # Cloudflare Turnstile Test Site Key (works on any domain)
+  # Replace with production key after adding domain to Cloudflare dashboard
+  VITE_TURNSTILE_SITE_KEY = "1x00000000000000000000AA"
+  
+  # Turnstile Secret Key for backend verification
+  # TURNSTILE_SECRET_KEY = "your-secret-key-here"
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
