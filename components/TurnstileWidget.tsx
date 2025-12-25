@@ -22,9 +22,12 @@ const TurnstileWidget: React.FC<TurnstileWidgetProps> = ({ siteKey, onVerify, on
         const id = window.turnstile.render(containerRef.current, {
           sitekey: siteKey,
           callback: (token: string) => onVerify(token),
-          'error-callback': (error: any) => onError?.(error),
-          appearance: 'always',
+          'error-callback': (error: any) => {
+            console.error('Turnstile Error:', error);
+            onError?.(error);
+          },
           theme: 'light',
+          size: 'normal',
         });
         widgetIdRef.current = id;
       } catch (e) {
