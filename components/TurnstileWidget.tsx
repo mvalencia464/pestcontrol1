@@ -23,6 +23,8 @@ const TurnstileWidget: React.FC<TurnstileWidgetProps> = ({ siteKey, onVerify, on
           sitekey: siteKey,
           callback: (token: string) => onVerify(token),
           'error-callback': (error: any) => onError?.(error),
+          appearance: 'always',
+          theme: 'light',
         });
         widgetIdRef.current = id;
       } catch (e) {
@@ -37,7 +39,7 @@ const TurnstileWidget: React.FC<TurnstileWidgetProps> = ({ siteKey, onVerify, on
         widgetIdRef.current = null;
       }
     };
-  }, [siteKey, onVerify, onError]);
+  }, [siteKey]);
 
   return <div ref={containerRef} />;
 };
